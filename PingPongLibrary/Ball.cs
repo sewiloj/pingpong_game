@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace PingPongLibrary
 {
-    public class Class1
+    public class Ball
     {
+        public Ball()
+        {
+
+        }
     }
 }

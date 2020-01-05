@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PingPongLibrary\PingPongLibrary.csproj">
+      <Project>{91328a02-ab5e-41dd-bb47-c3a4bddfac55}</Project>
+      <Name>PingPongLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

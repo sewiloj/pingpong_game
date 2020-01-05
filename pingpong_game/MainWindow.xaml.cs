@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
+using PingPongLibrary;
 
 namespace pingpong_game
 {
@@ -10,30 +11,17 @@ namespace pingpong_game
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Models model = new Models();
+        private Game game = new Game();
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = model;
+            DataContext = game;
         }
-        private int padSpeed = 10;
-
         private void MainWindow_OnKeyDown(object sender, KeyboardEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.W)) model.LeftPadPosition = verifyBounds(model.LeftPadPosition, -padSpeed);
-            if (Keyboard.IsKeyDown(Key.S)) model.LeftPadPosition = verifyBounds(model.LeftPadPosition, padSpeed);  
+            if (Keyboard.IsKeyDown(Key.W)) game.MovePlayerPad(1);
+            if (Keyboard.IsKeyDown(Key.S)) game.MovePlayerPad(0);
         }
 
-        private int verifyBounds(int position, int change)
-        {
-            position += change;
-
-            if (position < 0)
-                position = 0;
-            if (position > (int)MainCanvas.ActualHeight - 90)
-                position = (int)MainCanvas.ActualHeight - 90;
-
-            return position;
-        }
     }
 }
