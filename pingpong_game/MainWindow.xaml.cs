@@ -18,8 +18,7 @@ namespace pingpong_game
         }
         private void MainWindow_OnKeyDown(object sender, KeyboardEventArgs e)
         {
-            int test;
-            if (Keyboard.IsKeyDown(Key.Space)) test = (int)MainCanvas.ActualHeight;
+            if (Keyboard.IsKeyDown(Key.Space)) game.GameActive = true;
             if (Keyboard.IsKeyDown(Key.W)) game.MovePlayerPad(1);
             if (Keyboard.IsKeyDown(Key.S)) game.MovePlayerPad(0);
         }
@@ -38,7 +37,7 @@ namespace pingpong_game
             //  DispatcherTimer setup
             DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 20);
             dispatcherTimer.Start();
         }
 

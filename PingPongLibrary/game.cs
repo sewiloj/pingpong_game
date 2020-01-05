@@ -94,10 +94,15 @@ namespace PingPongLibrary
 
         public void MoveBall()
         {
-            Random random = new Random();
-            int PlusOrMinus = random.Next(1, 3);
-            BallPositionX += ball.BallSpeed;
-            if (PlusOrMinus == 1)
+            if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 30)
+                ball.ChangeDirectionX();
+            if (BallPositionY <= 0 || BallPositionY >= board.BoardHeight - 30)
+                ball.ChangeDirectionY();
+            if (ball.BallDirectionX == 1)
+                BallPositionX += ball.BallSpeed;
+            else
+                BallPositionX -= ball.BallSpeed;
+            if (ball.BallDirectionY == 1)
                 BallPositionY += ball.BallSpeed;
             else
                 BallPositionY -= ball.BallSpeed;
