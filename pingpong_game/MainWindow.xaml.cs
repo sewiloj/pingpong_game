@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace pingpong_game
 {
@@ -20,9 +10,30 @@ namespace pingpong_game
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Models model = new Models();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = model;
+        }
+        private int padSpeed = 10;
+
+        private void MainWindow_OnKeyDown(object sender, KeyboardEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.W)) model.LeftPadPosition = verifyBounds(model.LeftPadPosition, -padSpeed);
+            if (Keyboard.IsKeyDown(Key.S)) model.LeftPadPosition = verifyBounds(model.LeftPadPosition, padSpeed);  
+        }
+
+        private int verifyBounds(int position, int change)
+        {
+            position += change;
+
+            if (position < 0)
+                position = 0;
+            if (position > (int)MainCanvas.ActualHeight - 90)
+                position = (int)MainCanvas.ActualHeight - 90;
+
+            return position;
         }
     }
 }
