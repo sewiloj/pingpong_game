@@ -3,20 +3,40 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace PingPongLibrary
 {
     public class Game : INotifyPropertyChanged
     {
+        private Board board;
         private PlayerPad playerPad;
         private ComputerPad computerPad;
-        public Game()
+        private Ball ball;
+        private bool gameActive = false;
+        public Game(int boardHeight, int boardWidth)
         {
+            board = new Board(boardHeight, boardWidth);
             playerPad = new PlayerPad(180);
             computerPad = new ComputerPad(180);
+            ball = new Ball();
         }
 
+        public bool GameActive
+        {
+            get { return gameActive; }
+            set
+            {
+                if (GameActive == true)
+                    gameActive = false;
+                else
+                {
+                    gameActive = true;
+                }
+                
+            }
+        }
         public int PlayerPadPosition
         {
             get { return playerPad.PlayerPadPosition; }
@@ -36,6 +56,26 @@ namespace PingPongLibrary
             }
         }
 
+        public int BallPositionX
+        {
+            get { return ball.BallPositionX; }
+            set
+            {
+                ball.BallPositionX = value;
+                OnPropertyChanged("BallPositionX");
+            }
+        }
+
+        public int BallPositionY
+        {
+            get { return ball.BallPositionY; }
+            set
+            {
+                ball.BallPositionY = value;
+                OnPropertyChanged("BallPositionY");
+            }
+        }
+
         public void MovePlayerPad(byte upOrDown)
         {
             int position = 0;
@@ -52,12 +92,23 @@ namespace PingPongLibrary
              PlayerPadPosition = verifyBounds(position);
         }
 
+        public void MoveBall()
+        {
+            Random random = new Random();
+            int PlusOrMinus = random.Next(1, 3);
+            BallPositionX += ball.BallSpeed;
+            if (PlusOrMinus == 1)
+                BallPositionY += ball.BallSpeed;
+            else
+                BallPositionY -= ball.BallSpeed;
+        }
+
         private int verifyBounds(int position)
         {
             if (position < 0)
                 position = 0;
-            if (position > 475 - 90)
-                position = 475 - 90;
+            if (position > board.BoardHeight - 100)
+                position = board.BoardHeight - 100;
 
             return position;
         }

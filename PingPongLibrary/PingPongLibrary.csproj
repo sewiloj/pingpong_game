@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ball.cs" />
+    <Compile Include="Board.cs" />
     <Compile Include="ComputerPad.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="PlayerPad.cs" />

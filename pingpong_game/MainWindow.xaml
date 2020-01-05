@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pingpong_game"
         mc:Ignorable="d"
+        Loaded="Window_Loaded"
         KeyDown="MainWindow_OnKeyDown"
         Title="Ping Pong Game" Height="500" Width="820" Background="white" ResizeMode="NoResize">
     
     <Grid>
-        <Canvas Width="800" Height="475" Name="MainCanvas" Background="Black">
 
-            <Rectangle Height="100" Width="20" Fill="white" Canvas.Top="{Binding PlayerPadPosition}"/>
-            <Rectangle Height="100" Width="20" Fill="Red" Canvas.Top="{Binding ComputerPadPosition}" Canvas.Left="779"/>
-            <Ellipse x:Name="Ball" Height="30" Width="30" Fill="Green" Canvas.Top="230" Canvas.Left="385" />
+        <Border x:Name="border" BorderBrush="Purple" BorderThickness="3">
+            <Canvas Name="MainCanvas" Background="Black" Opacity="0.8">
+                <Rectangle Height="100" Width="20" Fill="white" Canvas.Top="{Binding PlayerPadPosition}"/>
+                <Rectangle Height="100" Width="20" Fill="Red" Canvas.Top="{Binding ComputerPadPosition}" Canvas.Left="779"/>
+                <Ellipse x:Name="Ball" Height="30" Width="30" Fill="Green" Canvas.Top="{Binding BallPositionY}" Canvas.Left="{Binding BallPositionX}" />
+            </Canvas>
+        </Border>
 
-        </Canvas>
     </Grid>
 </Window>
