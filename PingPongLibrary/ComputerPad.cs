@@ -9,19 +9,13 @@ namespace PingPongLibrary
 {
     class ComputerPad
     {
-        private int computerPadPosition;
-        public ComputerPad(int position)
+        public ComputerPad(int position, byte padSpeed = 10)
         {
-            computerPadPosition = position;
+            ComputerPadPosition = position;
+            ComputerPadSpeed = padSpeed;
         }
 
-        public int ComputerPadPosition
-        {
-            get { return computerPadPosition; }
-            set
-            {
-                computerPadPosition = value;
-            }
-        }
+        public int ComputerPadPosition { get; set; }
+        public byte ComputerPadSpeed { get; set; }
     }
 }

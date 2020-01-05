@@ -11,7 +11,6 @@ namespace PingPongLibrary
     {
         private PlayerPad playerPad;
         private ComputerPad computerPad;
-        private readonly byte padSpeed = 10;
         public Game()
         {
             playerPad = new PlayerPad(180);
@@ -43,11 +42,11 @@ namespace PingPongLibrary
 
             if(upOrDown == 1)
             {
-                position = PlayerPadPosition - padSpeed;
+                position = PlayerPadPosition - playerPad.PlayerPadSpeed;
             }
             else if(upOrDown == 0)
             {
-                position = PlayerPadPosition + padSpeed;
+                position = PlayerPadPosition + playerPad.PlayerPadSpeed;
             }
 
              PlayerPadPosition = verifyBounds(position);
