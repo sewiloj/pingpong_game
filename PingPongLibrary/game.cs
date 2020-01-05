@@ -20,7 +20,7 @@ namespace PingPongLibrary
             board = new Board(boardHeight, boardWidth);
             playerPad = new PlayerPad(180);
             computerPad = new ComputerPad(180);
-            ball = new Ball();
+            ball = new Ball((boardWidth / 2 - 15), (boardHeight / 2 - 15));
         }
 
         public bool GameActive
@@ -94,19 +94,32 @@ namespace PingPongLibrary
 
         public void MoveBall()
         {
-            if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 30)
-                ball.ChangeDirectionX();
-            if (BallPositionY <= 0 || BallPositionY >= board.BoardHeight - 30)
-                ball.ChangeDirectionY();
-            if (ball.BallDirectionX == 1)
-                BallPositionX += ball.BallSpeed;
-            else
-                BallPositionX -= ball.BallSpeed;
-            if (ball.BallDirectionY == 1)
-                BallPositionY += ball.BallSpeed;
-            else
-                BallPositionY -= ball.BallSpeed;
+            if(GameActive)
+            {
+                if(BallPositionX <= 20 && (BallPositionY >= PlayerPadPosition && BallPositionY <= PlayerPadPosition+100))
+                {
+                    ball.ChangeDirectionX();
+                    ball.ChangeDirectionY();
+                }
+                else if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 30)
+                {
+                    GameActive = false;
+                    ball.ResetPosition();
+                }
+                if (BallPositionY <= 0 || BallPositionY >= board.BoardHeight - 30)
+                    ball.ChangeDirectionY();
+                if (ball.BallDirectionX == 1)
+                    BallPositionX += ball.BallSpeed;
+                else
+                    BallPositionX -= ball.BallSpeed;
+                if (ball.BallDirectionY == 1)
+                    BallPositionY += ball.BallSpeed;
+                else
+                    BallPositionY -= ball.BallSpeed;
+            }
         }
+
+
 
         private int verifyBounds(int position)
         {

@@ -8,9 +8,9 @@ namespace PingPongLibrary
 {
     public class Ball
     {
-        public Ball(int ballPositionX = 385, int ballPositionY = 230, byte ballSpeed = 5)
+        private Random rnd = new Random();
+        public Ball(int ballPositionX = 385, int ballPositionY = 230, byte ballSpeed = 3)
         {
-            Random rnd = new Random();
             BallSpeed = ballSpeed;
             BallPositionX = ballPositionX;
             BallPositionY = ballPositionY;
@@ -37,6 +37,14 @@ namespace PingPongLibrary
                 BallDirectionY = 0;
             else
                 BallDirectionY = 1;
+        }
+
+        public void ResetPosition()
+        {
+            BallPositionX = 385;
+            BallPositionY = 230;
+            BallDirectionX = rnd.Next(0, 2);
+            BallDirectionY = rnd.Next(0, 2);
         }
     }
 }
