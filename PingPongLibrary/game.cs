@@ -11,14 +11,14 @@ namespace PingPongLibrary
     public class Game : INotifyPropertyChanged
     {
         private Board board;
-        private PlayerPad playerPad;
+        private Pad playerPad;
         private ComputerPad computerPad;
         private Ball ball;
         private bool gameActive = false;
         public Game(int boardHeight, int boardWidth)
         {
             board = new Board(boardHeight, boardWidth);
-            playerPad = new PlayerPad(180);
+            playerPad = new Pad(180);
             computerPad = new ComputerPad(180);
             ball = new Ball((boardWidth / 2 - 15), (boardHeight / 2 - 15));
         }
@@ -39,19 +39,19 @@ namespace PingPongLibrary
         }
         public int PlayerPadPosition
         {
-            get { return playerPad.PlayerPadPosition; }
+            get { return playerPad.PadPosition; }
             set
             {
-                playerPad.PlayerPadPosition = value;
+                playerPad.PadPosition = value;
                 OnPropertyChanged("PlayerPadPosition");
             }
         }
         public int ComputerPadPosition
         {
-            get { return computerPad.ComputerPadPosition; }
+            get { return computerPad.PadPosition; }
             set
             {
-                computerPad.ComputerPadPosition = value;
+                computerPad.PadPosition = value;
                 OnPropertyChanged("ComputerPadPosition");
             }
         }
@@ -82,14 +82,33 @@ namespace PingPongLibrary
 
             if(upOrDown == 1)
             {
-                position = PlayerPadPosition - playerPad.PlayerPadSpeed;
+                position = playerPad.MoveUp();
             }
             else if(upOrDown == 0)
             {
-                position = PlayerPadPosition + playerPad.PlayerPadSpeed;
+                position = playerPad.MoveDown();
             }
 
              PlayerPadPosition = verifyBounds(position);
+        }
+
+        public void MoveComputerPad()
+        {
+            if (GameActive)
+            {
+                int position = 0;
+                byte upOrDown = computerPad.MoveComputerPad(BallPositionY);
+                if (upOrDown == 2)
+                {
+                    position = computerPad.MoveUp();
+                    ComputerPadPosition = verifyBounds(position);
+                }
+                else if (upOrDown == 1)
+                {
+                    position = computerPad.MoveDown();
+                    ComputerPadPosition = verifyBounds(position);
+                }                
+            }
         }
 
         public void MoveBall()
@@ -101,7 +120,12 @@ namespace PingPongLibrary
                     ball.ChangeDirectionX();
                     ball.ChangeDirectionY();
                 }
-                else if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 30)
+                else if (BallPositionX >= (board.BoardWidth - 50) && (BallPositionY >= ComputerPadPosition && BallPositionY <= ComputerPadPosition + 100))
+                {
+                    ball.ChangeDirectionX();
+                    ball.ChangeDirectionY();
+                }
+                else if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 20)
                 {
                     GameActive = false;
                     ball.ResetPosition();

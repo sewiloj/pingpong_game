@@ -23,10 +23,13 @@ namespace pingpong_game
             if (Keyboard.IsKeyDown(Key.S)) game.MovePlayerPad(0);
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void ball_Thick(object sender, EventArgs e)
         {
-            
             game.MoveBall();
+        }
+        private void computer_Thick(object sender, EventArgs e)
+        {
+            game.MoveComputerPad();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -35,10 +38,14 @@ namespace pingpong_game
             DataContext = game;
 
             //  DispatcherTimer setup
-            DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            dispatcherTimer.Start();
+            DispatcherTimer ballTimer = new DispatcherTimer();
+            ballTimer.Tick += new EventHandler(ball_Thick);
+            ballTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            ballTimer.Start();
+            DispatcherTimer computerTimer = new DispatcherTimer();
+            computerTimer.Tick += new EventHandler(computer_Thick);
+            computerTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            computerTimer.Start();
         }
 
 
