@@ -69,6 +69,7 @@ namespace PingPongLibrary
                 rightCollision = false;
                 topCollision = false;
                 bottomCollision = false;
+                BallSpeedY = (byte)rnd.Next(2, 6);
                 return true;
             }
             else if (!rightCollision && BallPositionX + 30 >= boardWidth - computerPadWidth && (BallPositionY + 30 >= computerPadPosition && BallPositionY <= computerPadPosition + 100))
@@ -77,19 +78,14 @@ namespace PingPongLibrary
                 rightCollision = true;
                 topCollision = false;
                 bottomCollision = false;
+                BallSpeedY = (byte)rnd.Next(2, 6);
                 return true;
             }
 
 
             return false;
         }
-        /// <summary>
-        /// Test
-        /// </summary>
-        /// <param name="boardWidth"></param>
-        /// <param name="playerPadWidth"></param>
-        /// <param name="computerPadWidth"></param>
-        /// <returns>true or false</returns>
+
         public bool CheckBallOut(int boardWidth, int playerPadWidth, int computerPadWidth)
         {
             if (BallPositionX <= 0 + playerPadWidth || BallPositionX + 30 >= boardWidth - computerPadWidth)
@@ -124,9 +120,9 @@ namespace PingPongLibrary
             return false;
         }
 
-        private void setAngle(int playerPadPosition, int playerPadWidth, int computerPadPosition, int computerPadWidth)
-        {
+        //private void setAngle(int playerPadPosition, int playerPadWidth, int computerPadPosition, int computerPadWidth)
+        //{
 
-        }
+        //}
     }
 }

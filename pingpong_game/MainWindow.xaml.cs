@@ -32,6 +32,15 @@ namespace pingpong_game
         }
         private void computer_Thick(object sender, EventArgs e)
         {
+            if (game.GameActive == false && game.ComputerPoints == 11)
+                ComputerWins.Visibility = Visibility.Visible;
+            else if (game.GameActive == false && game.PlayerPoints == 11)
+                PlayerWins.Visibility = Visibility.Visible;
+            else
+            {
+                PlayerWins.Visibility = Visibility.Collapsed;
+                ComputerWins.Visibility = Visibility.Collapsed;
+            }
             game.MoveComputerPad();
         }
 

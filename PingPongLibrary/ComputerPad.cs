@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PingPongLibrary
 {
-    class ComputerPad : Pad
+    public class ComputerPad : Pad
     {
         public ComputerPad(int position, byte padSpeed = 10, int difficulty = 3) : base(position, padSpeed)
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PingPongLibrary
 {
-    class Board
+    public class Board
     {
         public Board(int height, int width)
         {

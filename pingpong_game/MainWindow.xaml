@@ -36,6 +36,18 @@
                     </TextBlock.Effect>
                 </TextBlock>
 
+                <TextBlock x:Name="PlayerWins" Canvas.Left="300" TextWrapping="Wrap" Text="Wygrałeś!" Foreground="Green" FontSize="35" FontWeight="Bold" Visibility="Collapsed" Canvas.Top="140">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
+                <TextBlock x:Name="ComputerWins" Canvas.Left="300" TextWrapping="Wrap" Text="Przegrałeś!" Foreground="red" FontSize="35" FontWeight="Bold" Visibility="Collapsed" Canvas.Top="140">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="4"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+
             </Canvas>
         </Border>
 

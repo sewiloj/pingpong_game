@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pingpong_game", "pingpong_g
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PingPongLibrary", "PingPongLibrary\PingPongLibrary.csproj", "{91328A02-AB5E-41DD-BB47-C3A4BDDFAC55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DocFx", "DocFx\DocFx.csproj", "{E2B877A2-C9CF-4E71-91DE-6DE6D92D9928}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{D082CEDB-54FF-4C21-A966-67FF93F95B9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{91328A02-AB5E-41DD-BB47-C3A4BDDFAC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91328A02-AB5E-41DD-BB47-C3A4BDDFAC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91328A02-AB5E-41DD-BB47-C3A4BDDFAC55}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2B877A2-C9CF-4E71-91DE-6DE6D92D9928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2B877A2-C9CF-4E71-91DE-6DE6D92D9928}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2B877A2-C9CF-4E71-91DE-6DE6D92D9928}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2B877A2-C9CF-4E71-91DE-6DE6D92D9928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D082CEDB-54FF-4C21-A966-67FF93F95B9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D082CEDB-54FF-4C21-A966-67FF93F95B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D082CEDB-54FF-4C21-A966-67FF93F95B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D082CEDB-54FF-4C21-A966-67FF93F95B9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
