@@ -15,12 +15,17 @@ namespace PingPongLibrary
         private ComputerPad computerPad;
         private Ball ball;
         private bool gameActive = false;
+        private int playerPoints;
+        private int computerPoints;
+
         public Game(int boardHeight, int boardWidth)
         {
             board = new Board(boardHeight, boardWidth);
             playerPad = new Pad(180);
             computerPad = new ComputerPad(180);
             ball = new Ball((boardWidth / 2 - 15), (boardHeight / 2 - 15));
+            PlayerPoints = 0;
+            ComputerPoints = 0;
         }
 
         public bool GameActive
@@ -37,6 +42,24 @@ namespace PingPongLibrary
                 
             }
         }
+        public int PlayerPoints
+        {
+            get { return playerPoints; }
+            set
+            {
+                playerPoints = value;
+                OnPropertyChanged("PlayerPoints");
+            }
+        }
+        public int ComputerPoints
+        {
+            get { return computerPoints; }
+            set
+            {
+                computerPoints = value;
+                OnPropertyChanged("ComputerPoints");
+            }
+        }
         public int PlayerPadPosition
         {
             get { return playerPad.PadPosition; }
@@ -46,6 +69,15 @@ namespace PingPongLibrary
                 OnPropertyChanged("PlayerPadPosition");
             }
         }
+        public int PlayerPadWidth
+        {
+            get { return playerPad.Width; }
+            set
+            {
+                playerPad.Width = value;
+                OnPropertyChanged("PlayerPadWidth");
+            }
+        }
         public int ComputerPadPosition
         {
             get { return computerPad.PadPosition; }
@@ -53,6 +85,15 @@ namespace PingPongLibrary
             {
                 computerPad.PadPosition = value;
                 OnPropertyChanged("ComputerPadPosition");
+            }
+        }
+        public int ComputerPadWidth
+        {
+            get { return computerPad.Width; }
+            set
+            {
+                computerPad.Width = value;
+                OnPropertyChanged("ComputerPadWidth");
             }
         }
 
@@ -111,36 +152,43 @@ namespace PingPongLibrary
             }
         }
 
-        public void MoveBall()
+        public bool MoveBall()
         {
             if(GameActive)
             {
-                if(BallPositionX <= 20 && (BallPositionY >= PlayerPadPosition && BallPositionY <= PlayerPadPosition+100))
+                if(ball.CheckCollision(PlayerPadPosition, PlayerPadWidth, ComputerPadPosition, ComputerPadWidth, board.BoardHeight, board.BoardWidth))
                 {
                     ball.ChangeDirectionX();
-                    ball.ChangeDirectionY();
                 }
-                else if (BallPositionX >= (board.BoardWidth - 50) && (BallPositionY >= ComputerPadPosition && BallPositionY <= ComputerPadPosition + 100))
-                {
-                    ball.ChangeDirectionX();
+                else if (ball.CheckWallCollision(board.BoardHeight))
                     ball.ChangeDirectionY();
-                }
-                else if (BallPositionX <= 0 || BallPositionX >= board.BoardWidth - 20)
+                else if (ball.CheckBallOut(board.BoardWidth, PlayerPadWidth, ComputerPadWidth))
                 {
                     GameActive = false;
+                    AddPoints();
                     ball.ResetPosition();
                 }
-                if (BallPositionY <= 0 || BallPositionY >= board.BoardHeight - 30)
-                    ball.ChangeDirectionY();
                 if (ball.BallDirectionX == 1)
-                    BallPositionX += ball.BallSpeed;
+                    BallPositionX += ball.BallSpeedX;
                 else
-                    BallPositionX -= ball.BallSpeed;
+                    BallPositionX -= ball.BallSpeedX;
                 if (ball.BallDirectionY == 1)
-                    BallPositionY += ball.BallSpeed;
+                    BallPositionY += ball.BallSpeedY;
                 else
-                    BallPositionY -= ball.BallSpeed;
+                    BallPositionY -= ball.BallSpeedY;
+
+                return false;
             }
+            return true;
+        }
+
+        private void AddPoints()
+        {
+            if (BallPositionX > board.BoardWidth / 2)
+                PlayerPoints++;
+            else if (BallPositionX < board.BoardWidth / 2)
+                ComputerPoints++;
+
         }
 
 

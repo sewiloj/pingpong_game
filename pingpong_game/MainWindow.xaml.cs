@@ -25,7 +25,10 @@ namespace pingpong_game
 
         private void ball_Thick(object sender, EventArgs e)
         {
-            game.MoveBall();
+            if (game.MoveBall())
+                TextBlock.Visibility = Visibility.Visible;
+            else
+                TextBlock.Visibility = Visibility.Collapsed;
         }
         private void computer_Thick(object sender, EventArgs e)
         {
@@ -44,7 +47,7 @@ namespace pingpong_game
             ballTimer.Start();
             DispatcherTimer computerTimer = new DispatcherTimer();
             computerTimer.Tick += new EventHandler(computer_Thick);
-            computerTimer.Interval = new TimeSpan(0, 0, 0, 0, 100);
+            computerTimer.Interval = new TimeSpan(0, 0, 0, 0, 50);
             computerTimer.Start();
         }
 

@@ -9,15 +9,17 @@ namespace PingPongLibrary
 {
     public class Pad
     {
-        public Pad(int position, byte padSpeed = 10)
+        public Pad(int position, int width = 10, byte padSpeed = 10)
         {
             PadPosition = position;
             PadSpeed = padSpeed;
+            Width = width;
         }
 
 
         public int PadPosition { get; set; }
         public byte PadSpeed { get; set; }
+        public int Width { get; set; }
 
         public int MoveUp()
         {

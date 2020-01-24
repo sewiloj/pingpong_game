@@ -9,7 +9,7 @@ namespace PingPongLibrary
 {
     class ComputerPad : Pad
     {
-        public ComputerPad(int position, byte padSpeed = 10, int difficulty = 1) : base(position, padSpeed)
+        public ComputerPad(int position, byte padSpeed = 10, int difficulty = 3) : base(position, padSpeed)
         {
             PadPosition = position;
             PadSpeed = padSpeed;
@@ -36,14 +36,14 @@ namespace PingPongLibrary
 
             if(Difficulty == 1)
             {
-                if (chance < 60)
+                if (chance < 70)
                     return UpOrDown(true, ballPositionY);
                 else
                     return UpOrDown(false, ballPositionY);
             }
             else if (Difficulty == 2)
             {
-                if (chance < 70)
+                if (chance < 80)
                     return UpOrDown(true, ballPositionY);
                 else
                     return UpOrDown(false, ballPositionY);
