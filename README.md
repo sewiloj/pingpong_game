@@ -9,13 +9,13 @@
 
 ## General info
 In this game the player has to score 11 points against another player wich is controlled by the AI.
-Each player is represented by a vertical bar and has to move up and down (using "W" and "S" respectively) in order to bounce the ball (square dot) in such a way that the opponent can't bounce it back. Once the points limit is reached by either side, the game ends and the score table is shown. 
+Each player is represented by a vertical bar and has to move up and down (using "W" and "S" respectively) in order to bounce the ball (square dot) in such a way that the opponent can't bounce it back. Once the points limit is reached by either side, the game ends. 
 
 ## Features
-At the top of the screen are displayed current scores and pause button. After clicking the pause button, the player is given two options, to choose between reseting the game or continuing it. The player is also able to choose between multiple UI colors.
+At the top of the screen are displayed current scores and pause button. 
 
 ## Technologies
-* C# - .NET Framework 4.6.1
+* C# - .NET Framework 4.7.2
 
 ## Authors
 Created by Agnieszka Krupińska, Arkadiusz Pietras & Jakub Sewiło
